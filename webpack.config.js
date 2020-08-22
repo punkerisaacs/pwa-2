@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         filename: 'app.[hash].js',
-        path: path.join(__dirname, 'dist')
+        path: path.join(__dirname, 'build')
     },
     plugins: [
         new CleanWebpackPlugin(),
