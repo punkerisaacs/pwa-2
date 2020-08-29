@@ -10,10 +10,10 @@ interface Props {
 
 export default function PhotoCardItem(props: Props): JSX.Element {
     return (
-        <article>
+        <article style={{ margin: 10 }}>
             <a href={`/detail/${props.id}`}>
                 <ImgWrapper>
-                    <Img src={props.src} alt="mascota" />
+                    <Img src={props.src || ''} alt="mascota" />
                 </ImgWrapper>
             </a>
             <Button>
