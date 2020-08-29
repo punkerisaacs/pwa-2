@@ -7,8 +7,8 @@ export default function PhotoCardList(): JSX.Element {
     return (
         <ul>
             {/* eslint-disable-next-line @typescript-eslint/typedef */}
-            {[1, 2, 3].map((id) => {
-                return <PhotoCardItem key={id} id={'1'} likes={0} src={DEFAULT_IMAGE} />;
+            {[1, 2, 3, 4, 5, 6].map((id) => {
+                return <PhotoCardItem key={id} id={id} likes={0} src={DEFAULT_IMAGE} />;
             })}
         </ul>
     );

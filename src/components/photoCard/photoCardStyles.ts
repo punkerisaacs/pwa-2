@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 import { fadeIn } from '../../animations/fadeIn';
 
+interface ArticleRef {
+    ref: any;
+}
+
+export const Article = styled.article<ArticleRef>`
+    min-height: 200px;
+    margin: 10px;
+`;
+
 export const ImgWrapper = styled.div`
     border-radius: 10px;
     display: block;
