@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { Category } from './components';
-const DEFAULT_IMAGE = 'https://i.imgur.com/dJa0Hpl.jpg';
+import { CategoryList, PhotoCardList, Logo } from './components';
+import { GlobalStyles } from './globalStyles';
 
 export default function App(): JSX.Element {
-    return <Category cover={DEFAULT_IMAGE} emoji={'?'} path={''} />;
+    return (
+        <React.Fragment>
+            <GlobalStyles />
+            <Logo />
+            <CategoryList />
+            <PhotoCardList />
+        </React.Fragment>
+    );
 }
