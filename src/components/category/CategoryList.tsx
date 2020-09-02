@@ -14,7 +14,7 @@ export default function CategoryList(): JSX.Element {
                 {categories.map((category: any) => {
                     return (
                         <Item key={category.id}>
-                            <CategoryItem {...category} skeleton={loading} />
+                            <CategoryItem {...category} skeleton={loading} path={`/pet/${category.id}`} />
                         </Item>
                     );
                 })}

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Article, Button, Img, ImgWrapper } from './photoCardStyles';
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { Article, Img, ImgWrapper } from './photoCardStyles';
 import { useLocalStorage, useNearScreen } from '../../hooks';
+import { ButtonLike } from '../index';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
+import { Link } from 'react-router-dom';
 
 interface Props {
     id: string | number;
@@ -9,29 +12,36 @@ interface Props {
     src: string;
 }
 
+const TOGGLE_LIKE = gql`
+    mutation likeAnonymousPhoto($input: LikePhoto!) {
+        likeAnonymousPhoto(input: $input) {
+            id
+            liked
+            likes
+        }
+    }
+`;
+
 export default function PhotoCardItem(props: Props): JSX.Element {
     const key = `like-${props.id}`;
     const [liked, setLiked] = useLocalStorage(key, false);
     const [show, element] = useNearScreen();
+    const [toggleLike] = useMutation(TOGGLE_LIKE, { variables: { input: { id: props.id } } });
 
-    const Icon = liked ? MdFavorite : MdFavoriteBorder;
+    const handleClick = () => {
+        toggleLike().then(setLiked(!liked));
+    };
 
     return (
         <Article ref={element}>
             {show && (
                 <React.Fragment>
-                    <a href={`/detail/${props.id}`}>
+                    <Link to={`/details/${props.id}`}>
                         <ImgWrapper>
                             <Img src={props.src || ''} alt="mascota" />
                         </ImgWrapper>
-                    </a>
-                    <Button
-                        onClick={() => {
-                            return setLiked(!liked);
-                        }}>
-                        <Icon size="32" />
-                        {props.likes || 0} likes!
-                    </Button>
+                    </Link>
+                    <ButtonLike onClick={handleClick} liked={liked} likes={props.likes} />
                 </React.Fragment>
             )}
         </Article>

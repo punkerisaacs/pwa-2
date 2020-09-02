@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { fadeInScreen } from '../../animations/fadeInScreen';
 import { skeletonStyle } from '../../animations/skeletonStyle';
-
+import { Link } from 'react-router-dom';
 export interface ListProps {
     fixed?: boolean;
 }
@@ -50,7 +50,7 @@ export const Item = styled.li`
     padding: 0 8px;
 `;
 
-export const ContainerImage = styled.a`
+export const ContainerImage = styled(Link)`
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -60,21 +60,20 @@ export const ContainerImage = styled.a`
     border-image-slice: 2;
     border-radius: 50%;
     border: double 4px transparent;
-    background-image: linear-gradient(#ff0000, #fff500),
-        radial-gradient(circle at top left, #f0ff00, #cf08fc);
+    background-image: linear-gradient(#ff0000, #fff500), radial-gradient(circle at top left, #f0ff00, #cf08fc);
     background-origin: border-box;
     background-clip: content-box, border-box;
 
     ${(props: PropsChildren) => {
-    return (
-        props.skeleton &&
-        css`
+        return (
+            props.skeleton &&
+            css`
                  {
                     background-image: none;
                 }
             `
-    );
-}}
+        );
+    }}
 `;
 
 export const ContainerEmoji = styled.a`

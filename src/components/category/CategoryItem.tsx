@@ -11,7 +11,7 @@ interface Props {
 export default function CategoryItem(props: Props): JSX.Element {
     return (
         <React.Fragment>
-            <ContainerImage href={props.path} skeleton={props.skeleton}>
+            <ContainerImage to={props.path} skeleton={props.skeleton}>
                 <Image src={props.cover || ''} alt="" skeleton={props.skeleton} />
             </ContainerImage>
             <ContainerEmoji href={props.path}>
