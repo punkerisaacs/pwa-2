@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PhotoCardItem } from '../../components';
-import { details } from '../../higthOrderComponents';
+import { PhotoCardItem } from '../components';
+import { details } from '../higthOrderComponents';
 import { RouteChildrenProps } from 'react-router-dom';
 
 type Props = RouteChildrenProps;

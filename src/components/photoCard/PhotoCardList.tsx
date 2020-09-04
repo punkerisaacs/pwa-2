@@ -3,13 +3,15 @@ import { PhotoCardItem } from '../index';
 import { withPhotos } from '../../higthOrderComponents';
 import { RouteChildrenProps } from 'react-router-dom';
 
-type Props = RouteChildrenProps;
+interface Props {
+    categoryId: string | number;
+}
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_hamsters.jpg';
 export default function PhotoCardList(props: Props): JSX.Element {
     // @ts-ignore
-    const { id } = props.match.params;
-    const { data: { photos = [] } = {} } = withPhotos(id);
+    const { categoryId } = props;
+    const { data: { photos = [] } = {} } = withPhotos(categoryId);
     return (
         <ul>
             {/* eslint-disable-next-line @typescript-eslint/typedef */}
