@@ -3,7 +3,7 @@ import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Button } from './buttonLikeStyles';
 
 interface Props {
-    liked: string;
+    liked: boolean;
     likes: number;
     onClick: () => void;
 }

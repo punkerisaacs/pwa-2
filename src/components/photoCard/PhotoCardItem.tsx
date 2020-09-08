@@ -10,11 +10,12 @@ interface Props {
     id: string | number;
     likes: number;
     src: string;
+    liked: boolean;
 }
 
 const TOGGLE_LIKE = gql`
-    mutation likeAnonymousPhoto($input: LikePhoto!) {
-        likeAnonymousPhoto(input: $input) {
+    mutation likePhoto($input: LikePhoto!) {
+        likePhoto(input: $input) {
             id
             liked
             likes
@@ -29,7 +30,7 @@ export default function PhotoCardItem(props: Props): JSX.Element {
     const [toggleLike] = useMutation(TOGGLE_LIKE, { variables: { input: { id: props.id } } });
 
     const handleClick = () => {
-        toggleLike().then(setLiked(!liked));
+        toggleLike().then();
     };
 
     return (
@@ -41,7 +42,7 @@ export default function PhotoCardItem(props: Props): JSX.Element {
                             <Img src={props.src || ''} alt="mascota" />
                         </ImgWrapper>
                     </Link>
-                    <ButtonLike onClick={handleClick} liked={liked} likes={props.likes} />
+                    <ButtonLike onClick={handleClick} liked={props.liked} likes={props.likes} />
                 </React.Fragment>
             )}
         </Article>

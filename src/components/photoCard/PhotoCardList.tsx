@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { PhotoCardItem } from '../index';
 import { withPhotos } from '../../higthOrderComponents';
-import { RouteChildrenProps } from 'react-router-dom';
 
 interface Props {
     categoryId: string | number;
@@ -16,7 +15,15 @@ export default function PhotoCardList(props: Props): JSX.Element {
         <ul>
             {/* eslint-disable-next-line @typescript-eslint/typedef */}
             {photos.map((item: any) => {
-                return <PhotoCardItem key={item.id} id={item.id} likes={item.likes} src={item.src || DEFAULT_IMAGE} />;
+                return (
+                    <PhotoCardItem
+                        key={item.id}
+                        id={item.id}
+                        liked={item.liked}
+                        likes={item.likes}
+                        src={item.src || DEFAULT_IMAGE}
+                    />
+                );
             })}
         </ul>
     );

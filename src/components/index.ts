@@ -5,3 +5,7 @@ export { default as PhotoCardList } from './photoCard/PhotoCardList';
 export { default as Logo } from './logo/Logo';
 export { default as ButtonLike } from './buttonLike/ButtonLike';
 export { default as BottomTabs } from './bottomTabs/BottomTabs';
+export { default as UserForm } from './userform/UserForm';
+export { default as FavoritesList } from './favorites/FavoritesList';
+export { default as FavoritesListItem } from './favorites/FavoritesListItem';
+export { default as SubmitBotton } from './submitBotton/SubmitBotton';

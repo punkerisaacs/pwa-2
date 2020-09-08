@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { CategoryList, PhotoCardList, Logo, BottomTabs } from './components';
-import { Home, PetDetails, Favorites, User, NotRegisteredUser } from './pages';
+import { Logo, BottomTabs } from './components';
+import { Home, PetDetails, Favorites, User, NotRegisteredUser, NotFound } from './pages';
 import { GlobalStyles } from './globalStyles';
-import { Switch, Route } from 'react-router-dom';
-import UserContext from './contexts/UserContext';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { UserContext } from './contexts/UserContext';
 
 export default function App(): JSX.Element {
+    // @ts-ignore
+    const { isAuth } = React.useContext(UserContext);
     return (
         <React.Fragment>
             <GlobalStyles />
@@ -15,23 +17,14 @@ export default function App(): JSX.Element {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/pet/:id" component={Home} />
                 <Route exact path="/details/:id" component={PetDetails} />
+                {!isAuth && <Route path="/login" component={NotRegisteredUser} />}
+                {!isAuth && <Redirect from="/favorites" to="/login" />}
+                {!isAuth && <Redirect from="/profile" to="/login" />}
+                {isAuth && <Redirect from="/login" to="/" />}
+                <Route exact path="/favorites" component={Favorites} />
+                <Route exact path="/profile" component={User} />
+                <Route path="*" component={NotFound} />
             </Switch>
-
-            <UserContext.Consumer>
-                {({ isAuth }) => {
-                    return isAuth ? (
-                        <Switch>
-                            <Route exact path="/favorites" component={Favorites} />
-                            <Route exact path="/profile" component={User} />
-                        </Switch>
-                    ) : (
-                        <Switch>
-                            <Route exact path="/favorites" component={NotRegisteredUser} />
-                            <Route exact path="/profile" component={NotRegisteredUser} />
-                        </Switch>
-                    );
-                }}
-            </UserContext.Consumer>
 
             <BottomTabs />
         </React.Fragment>

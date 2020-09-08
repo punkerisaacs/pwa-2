@@ -1,5 +1,10 @@
 import * as React from 'react';
+import { FavoritesList } from '../components';
 
 export default function Favorites(): JSX.Element {
-    return <h1>Favs </h1>;
+    return (
+        <div>
+            <FavoritesList />
+        </div>
+    );
 }
